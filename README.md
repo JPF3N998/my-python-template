@@ -7,10 +7,32 @@
 - [Installation](#installation)
 - [License](#license)
 
-## Installation
+## Virtual Env
 
 ```console
-pip install my-python-template
+hatch shell
+```
+
+## Running lint and format check
+
+```console
+hatch run dev:check
+```
+
+## Running Tests
+
+### Unit Tests
+
+```console
+# Remember to check which venv you are using, should be Hatch's
+
+hatch run test
+```
+
+# Building for Prod
+
+```console
+hatch shell -e production
 ```
 
 ## License
