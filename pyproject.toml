@@ -5,11 +5,11 @@ build-backend = "hatchling.build"
 [project]
 name = "my-python-template"
 dynamic = ["version"]
-description = ''
+description = 'JPFeng Python Project Template'
 readme = "README.md"
 requires-python = ">=3.8"
 license = "MIT"
-keywords = []
+keywords = ["hatch", "python", "pytest"]
 authors = [
   { name = "JPFeng", email = "jpfeng-dev@proton.me" },
 ]
@@ -24,10 +24,35 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
-dependencies = []
+dependencies = [
+  "pydantic",
+  "loguru",
+]
 
 [tool.hatch.envs.default]
 installer = "uv"
+
+dependencies = [
+  "pytest",
+  "ruff"
+]
+
+[tool.hatch.envs.default.scripts]
+format = "ruff format {args:src/my_python_template tests}"
+check = "ruff check {args:src/my_python_template tests}"
+test = [
+  "uv pip install -e .",
+  "pytest"
+]
+
+[tool.pytest]
+testpaths = [
+  "tests"
+]
+
+[tool.hatch.envs.production]
+# Clean production-like environment for testing
+dependencies = []
 
 [project.urls]
 Documentation = "https://github.com/JPFeng/my-python-template#readme"
